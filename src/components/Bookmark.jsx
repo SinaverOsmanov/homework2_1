@@ -1,7 +1,7 @@
 import React from "react";
 import { BookmarkTypes } from "./../types/types";
 
-export function Bookmark ({ id, favorite, onPickFavorite }) {
+export function Bookmark({ id, favorite, onPickFavorite }) {
     return (
         <button className="btn" onClick={() => onPickFavorite(id)}>
             {favorite

@@ -1,11 +1,13 @@
 import { PropTypes } from "prop-types";
 
 export const QualitiesTypes = {
-    quality: PropTypes.shape([{
-        _id: PropTypes.string,
-        name: PropTypes.string,
-        color: PropTypes.string
-    }])
+    quality: PropTypes.shape([
+        {
+            _id: PropTypes.string,
+            name: PropTypes.string,
+            color: PropTypes.string
+        }
+    ])
 };
 
 export const ProfessionTypes = PropTypes.shape({
@@ -21,16 +23,18 @@ export const UserTypes = {
         rate: PropTypes.number,
         favorite: PropTypes.bool,
         quality: QualitiesTypes,
-        profession: ProfessionTypes
+        professions: ProfessionTypes
     }),
     onRemove: PropTypes.func.isRequired,
     onPickFavorite: PropTypes.func.isRequired
 };
 
 export const UsersTypes = {
-    users: PropTypes.shape([{
-        user: UserTypes
-    }]),
+    users: PropTypes.arrayOf(PropTypes.shape(
+        {
+            user: UserTypes
+        }
+    )),
     onRemove: PropTypes.func.isRequired,
     onPickFavorite: PropTypes.func.isRequired
 };
@@ -50,4 +54,12 @@ export const BookmarkTypes = {
     id: PropTypes.string,
     favorite: PropTypes.bool,
     onPickFavorite: PropTypes.func.isRequired
+};
+
+export const GroupListTypes = {
+    professions: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+    onItemSelect: PropTypes.func.isRequired,
+    valueProperty: PropTypes.string.isRequired,
+    contentProperty: PropTypes.string.isRequired
+
 };

@@ -1,8 +1,8 @@
 import React from "react";
 import { SearchTypes } from "./../types/types";
 
-export function SearchStatus ({ countUsers }) {
-    function changeText (num) {
+export function SearchStatus({ countUsers }) {
+    function changeText(num) {
         const text = num < 5 && num > 1 ? "человека" : "человек";
         return num > 0
             ? `${num} ${text} тусанет с тобой сегодня`

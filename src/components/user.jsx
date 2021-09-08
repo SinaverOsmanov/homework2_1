@@ -3,7 +3,7 @@ import { Bookmark } from "./Bookmark";
 import { Quality } from "./Quality";
 import { UserTypes } from "./../types/types";
 
-export function User ({ user, onRemove, onPickFavorite }) {
+export function User({ user, onRemove, onPickFavorite }) {
     return (
         <tr>
             <td>{user.name}</td>
