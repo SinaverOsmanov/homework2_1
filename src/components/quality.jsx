@@ -1,7 +1,7 @@
 import React from "react";
 import { QualitiesTypes } from "./../types/types";
 
-export function Quality ({ quality }) {
+export function Quality({ quality }) {
     return (
         <span
             className={`badge bg-${quality.color}`}

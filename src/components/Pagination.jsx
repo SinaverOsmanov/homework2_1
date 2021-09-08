@@ -2,7 +2,7 @@ import React from "react";
 import _ from "lodash";
 import { PaginationTypes } from "./../types/types";
 
-export function Pagination (props) {
+export function Pagination(props) {
     const { itemsCount, pageSize, onPageChange, currentPage } = props;
     const pageCount = Math.ceil(itemsCount / pageSize);
     if (pageCount === 1) return null;
