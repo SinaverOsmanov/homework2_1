@@ -1,13 +1,13 @@
 import { PropTypes } from "prop-types";
 
 export const QualitiesTypes = {
-    quality: PropTypes.shape([
+    quality: PropTypes.shape(
         {
             _id: PropTypes.string,
             name: PropTypes.string,
             color: PropTypes.string
         }
-    ])
+    )
 };
 
 export const ProfessionTypes = PropTypes.shape({
@@ -25,18 +25,14 @@ export const UserTypes = {
         quality: QualitiesTypes,
         professions: ProfessionTypes
     }),
-    onRemove: PropTypes.func.isRequired,
-    onPickFavorite: PropTypes.func.isRequired
+    onRemove: PropTypes.func,
+    onPickFavorite: PropTypes.func
 };
 
 export const UsersTypes = {
-    users: PropTypes.arrayOf(PropTypes.shape(
-        {
-            user: UserTypes
-        }
-    )),
-    onRemove: PropTypes.func.isRequired,
-    onPickFavorite: PropTypes.func.isRequired
+    users: PropTypes.array,
+    onRemove: PropTypes.func,
+    onPickFavorite: PropTypes.func
 };
 
 export const PaginationTypes = {
@@ -51,8 +47,7 @@ export const SearchTypes = {
 };
 
 export const BookmarkTypes = {
-    id: PropTypes.string,
-    favorite: PropTypes.bool,
+    user: PropTypes.object,
     onPickFavorite: PropTypes.func.isRequired
 };
 

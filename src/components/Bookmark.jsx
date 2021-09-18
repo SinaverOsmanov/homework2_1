@@ -1,10 +1,10 @@
 import React from "react";
 import { BookmarkTypes } from "./../types/types";
 
-export function Bookmark({ id, favorite, onPickFavorite }) {
+export function Bookmark({ user, onPickFavorite }) {
     return (
-        <button className="btn" onClick={() => onPickFavorite(id)}>
-            {favorite
+        <button className="btn" onClick={() => onPickFavorite(user._id)}>
+            {user.favorite
                 ? (
                     <svg
                         xmlns="http://www.w3.org/2000/svg"

@@ -1,17 +1,22 @@
-
 import React from "react";
-import { Spin } from "antd";
+import { Spin, Col, Row } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
 import { PropTypes } from "prop-types";
 
-export default function Loading({ styles }) {
+export function Loading({ styles }) {
     const styleLoading = {
         ...styles,
         color: "red",
-        fontSize: "40px"
+        fontSize: "60px"
     };
     const antIcon = <LoadingOutlined style={styleLoading} spin />;
-    return <Spin indicator={antIcon} />;
+    return (
+        <Row justify="center" align='middle' wrap style={{ height: "100vh" }}>
+            <Col>
+                <Spin indicator={antIcon} />
+            </Col>
+        </Row>
+    );
 }
 
 Loading.propTypes = {
