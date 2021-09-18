@@ -2,7 +2,6 @@ import React from "react";
 import { GroupListTypes } from "../types/types";
 
 export function GroupList({ professions, onItemSelect, valueProperty, contentProperty, onSelectedItem }) {
-    console.log(professions);
     return (
         <ul className="list-group">
             {professions.map(item => <li
