@@ -4,7 +4,6 @@ import { Link, useLocation } from "react-router-dom";
 
 export function Header() {
     const { pathname } = useLocation();
-    console.log(pathname);
     const [current, setCurrent] = useState({
         current: pathname
     });
