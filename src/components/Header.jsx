@@ -1,12 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Menu } from "antd";
 import { Link, useLocation } from "react-router-dom";
 
 export function Header() {
     const { pathname } = useLocation();
+
     const [current, setCurrent] = useState({
         current: pathname
     });
+
+    useEffect(() => {
+        setCurrent({ current: pathname });
+    }, [pathname]);
 
     const handleClick = e => {
         setCurrent({ current: e.key });
