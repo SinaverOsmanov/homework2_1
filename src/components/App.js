@@ -1,6 +1,12 @@
 import React from "react";
-import { Users } from "./Users";
+import { Header } from "./Header";
+import { Content } from "./Content";
 
 export function App() {
-    return <Users />;
+    return (
+        <>
+            <Header />
+            <Content />
+        </>
+    );
 }
