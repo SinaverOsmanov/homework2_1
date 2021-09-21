@@ -13,3 +13,13 @@ code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
         monospace;
 }
+
+/* antd styles */
+
+body a {
+    text-decoration: none;
+}
+
+.userRowStyle .ant-row {
+    margin-bottom: 10px;
+}

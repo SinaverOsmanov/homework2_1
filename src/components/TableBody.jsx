@@ -12,7 +12,10 @@ export default function TableBody({ data, columns }) {
                 return component;
             }
         }
-        return _.get(item, columns[column].path);
+
+        const tmp = _.get(item, columns[column].path);
+
+        return tmp;
     };
 
     return (

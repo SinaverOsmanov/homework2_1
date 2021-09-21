@@ -3,12 +3,11 @@ import { PropTypes } from "prop-types";
 import { Bookmark } from "./Bookmark";
 import { QualitiesList } from "./QualitiesList";
 import { Table } from "./Table";
-import { TableHeader } from "./TableHeader";
-import TableBody from "./TableBody";
+import { Link } from "react-router-dom";
 
-export default function UsersTable({ users, onSort, onRemove, selectedSort, onPickFavorite, ...rest }) {
+export default function UsersTable({ users, onSort, onRemove, selectedSort, onPickFavorite }) {
     const columns = {
-        name: { path: "name", name: "Имя" },
+        name: { path: "name", name: "Имя", component: (user) => <Link to={`/users/${user._id}`}>{user.name}</Link> },
         qualities: { name: "Качество", component: (user) => <QualitiesList qualities={user.qualities}/> },
         professions: { path: "profession.name", name: "Профессия" },
         rate: { path: "rate", name: "Оценка" },
@@ -30,10 +29,9 @@ export default function UsersTable({ users, onSort, onRemove, selectedSort, onPi
     };
 
     return (
-        <Table onSort={onSort} selectedSort={selectedSort} columns={columns} data={users} >
-            <TableHeader {...{ onSort, selectedSort, columns }}/>
-            <TableBody {...{ columns, data: users }}/>
-        </Table>
+        <>
+            <Table onSort={onSort} selectedSort={selectedSort} columns={columns} data={users} />
+        </>
     );
 }
 

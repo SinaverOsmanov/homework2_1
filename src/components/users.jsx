@@ -24,15 +24,6 @@ export function Users() {
         setUsers((prev) => [...prev.filter((user) => user._id !== id)]);
     }
 
-    useEffect(async() => {
-        setLoading("loading");
-        const data = await API.users.fetchAll();
-        if (data) {
-            setUsers(data);
-            setLoading("");
-        }
-    }, []);
-
     function pickFavoriteHandle(id) {
         const newUsers = users.reduce((acc, item) => {
             let tmp = item;
@@ -49,19 +40,6 @@ export function Users() {
         setSelectedItem(item);
     }
 
-    useEffect(async() => {
-        setLoading("loading");
-        const data = await API.professions.fetchAll();
-        if (data) {
-            setProfessions(data);
-            setLoading("");
-        }
-    }, []);
-
-    useEffect(() => {
-        setCurrentPage(1);
-    }, [selectedItem]);
-
     function handlePageChange(event, pageIndex) {
         event.preventDefault();
         setCurrentPage(pageIndex);
@@ -70,6 +48,35 @@ export function Users() {
     function handleSort(item) {
         setSortBy(item);
     }
+
+    useEffect(async() => {
+        try {
+            setLoading("loading");
+            const data = await API.users.fetchAll();
+            if (data) {
+                setUsers(data);
+                setLoading("");
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    }, []);
+
+    useEffect(async() => {
+        try {
+            setLoading("loading");
+            const data = await API.professions.fetchAll();
+            if (data) {
+                setProfessions(data);
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    }, []);
+
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [selectedItem]);
 
     if (loading !== "loading") {
         const filteredUsers = selectedItem
@@ -88,8 +95,8 @@ export function Users() {
         }
 
         return (
-            <Row style={{ marginTop: "35px" }}>
-                <Col span={4} offset={1}>
+            <Row>
+                <Col span={4}>
                     {professions
                         ? (
                             <>
@@ -116,7 +123,7 @@ export function Users() {
                         style={{ height: "100%", color: "#dfdfdf" }}
                     />
                 </Col>
-                <Col span={15}>
+                <Col span={18}>
                     <Row>
                         <SearchStatus countUsers={count} />
                     </Row>
