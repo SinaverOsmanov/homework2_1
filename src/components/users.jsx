@@ -5,7 +5,7 @@ import { paginate } from "../utils/paginate.utils";
 import { UsersTypes } from "../types/types";
 import { GroupList } from "./GroupList";
 import API from "../api";
-import { Col, Row, Divider } from "antd";
+import { Col, Row, Divider, Input } from "antd";
 import UsersTable from "./UsersTable";
 import _ from "lodash";
 import { Loading } from "./../utils/loading.utils";
@@ -15,13 +15,15 @@ export function Users() {
     const [professions, setProfessions] = useState();
     const [selectedItem, setSelectedItem] = useState();
     const [users, setUsers] = useState([]);
+    const [searchUsers, setSearchUsers] = useState([]);
     const [sortBy, setSortBy] = useState({ path: "name", order: "asc" });
     const [loading, setLoading] = useState("loading");
-
+    const [search, setSearch] = useState();
     const pageSize = 8;
 
     function removeHandler(id) {
         setUsers((prev) => [...prev.filter((user) => user._id !== id)]);
+        setSearchUsers((prev) => [...prev.filter((user) => user._id !== id)]);
     }
 
     function pickFavoriteHandle(id) {
@@ -38,6 +40,7 @@ export function Users() {
 
     function handleProfessionSelect(item) {
         setSelectedItem(item);
+        setSearch("");
     }
 
     function handlePageChange(event, pageIndex) {
@@ -49,12 +52,31 @@ export function Users() {
         setSortBy(item);
     }
 
+    function searchHandler(event) {
+        const { value } = event.target;
+        setSelectedItem(null);
+        const newValue = value.match(/[^а-яa-z]/gmi) ? "" : value.trim();
+        setSearch(newValue);
+    }
+
+    useEffect(() => {
+        if (search) {
+            const strRegEx = `(${search})`;
+            const newRegEx = new RegExp(strRegEx, "gmi");
+            const searchResult = searchUsers.filter(u => u.name.match(newRegEx));
+            setUsers(searchResult);
+        } else {
+            setUsers(searchUsers);
+        }
+    }, [search]);
+
     useEffect(async() => {
         try {
             setLoading("loading");
             const data = await API.users.fetchAll();
             if (data) {
                 setUsers(data);
+                setSearchUsers(data);
                 setLoading("");
             }
         } catch (error) {
@@ -89,9 +111,9 @@ export function Users() {
             [sortBy.order]
         );
         const usersCrop = paginate(sortedUsers, currentPage, pageSize);
-
         function clearFilter() {
             setSelectedItem();
+            setSearch("");
         }
 
         return (
@@ -126,6 +148,9 @@ export function Users() {
                 <Col span={18}>
                     <Row>
                         <SearchStatus countUsers={count} />
+                    </Row>
+                    <Row>
+                        <Input onChange={searchHandler} value={search} style={{ width: 200 }} />
                     </Row>
                     <Row>
                         {!!count && (
