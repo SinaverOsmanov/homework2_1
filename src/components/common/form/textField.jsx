@@ -12,17 +12,36 @@ export function TextField({ type, label, name, value, onChange, error }) {
 
     return (
         <Col style={{ marginBottom: "10px" }}>
-            <Row >
+            <Row>
                 <label htmlFor={name}>{label}:</label>
             </Row>
             <Row style={{ margin: "5px 0 0 " }}>
                 <Col>
-                    <Input label={label} type={showPassword ? "text" : type} id={name} name={name} value={value} onChange={onChange} />
+                    <Input
+                        label={label}
+                        type={showPassword ? "text" : type}
+                        id={name}
+                        name={name}
+                        value={value}
+                        onChange={onChange}
+                    />
                 </Col>
                 <Col>
-                    {type === "password" &&
-                        <Button icon={showPassword ? <EyeOutlined /> : <EyeInvisibleOutlined />} onClick={toggleShowPassword} htmlType='button'/>
-                    }
+                    {type === "password" && (
+                        <Button
+                            icon={
+                                showPassword
+                                    ? (
+                                        <EyeOutlined />
+                                    )
+                                    : (
+                                        <EyeInvisibleOutlined />
+                                    )
+                            }
+                            onClick={toggleShowPassword}
+                            htmlType="button"
+                        />
+                    )}
                 </Col>
             </Row>
             {error && <p>{error}</p>}

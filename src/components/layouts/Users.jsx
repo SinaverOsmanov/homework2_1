@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { SearchStatus } from "./SearchStatus";
-import { Pagination } from "./Pagination";
-import { paginate } from "../utils/paginate.utils";
-import { UsersTypes } from "../types/types";
-import { GroupList } from "./GroupList";
-import API from "../api";
+import { SearchStatus } from "../ui/SearchStatus";
+import { paginate } from "../../utils/paginate.utils";
+import { UsersTypes } from "../../types/types";
+import API from "../../api";
 import { Col, Row, Divider, Input } from "antd";
-import UsersTable from "./UsersTable";
+import UsersTable from "../ui/UsersTable";
 import _ from "lodash";
-import { Loading } from "./../utils/loading.utils";
+import { Loading } from "../../utils/loading.utils";
+import { GroupList } from "../common/GroupList";
+import { Pagination } from "../common/Pagination";
 
 export function Users() {
     const [currentPage, setCurrentPage] = useState(1);
@@ -55,7 +55,7 @@ export function Users() {
     function searchHandler(event) {
         const { value } = event.target;
         setSelectedItem(null);
-        const newValue = value.match(/[^а-яa-z]/gmi) ? "" : value.trim();
+        const newValue = value.match(/[^а-яa-z]/gim) ? "" : value.trim();
         setSearch(newValue);
     }
 
@@ -63,7 +63,9 @@ export function Users() {
         if (search) {
             const strRegEx = `(${search})`;
             const newRegEx = new RegExp(strRegEx, "gmi");
-            const searchResult = searchUsers.filter(u => u.name.match(newRegEx));
+            const searchResult = searchUsers.filter((u) =>
+                u.name.match(newRegEx)
+            );
             setUsers(searchResult);
         } else {
             setUsers(searchUsers);
@@ -150,7 +152,11 @@ export function Users() {
                         <SearchStatus countUsers={count} />
                     </Row>
                     <Row>
-                        <Input onChange={searchHandler} value={search} style={{ width: 200 }} />
+                        <Input
+                            onChange={searchHandler}
+                            value={search}
+                            style={{ width: 200 }}
+                        />
                     </Row>
                     <Row>
                         {!!count && (

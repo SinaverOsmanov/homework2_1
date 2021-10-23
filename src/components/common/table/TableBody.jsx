@@ -34,5 +34,4 @@ export default function TableBody({ data, columns }) {
 TableBody.propTypes = {
     data: PropTypes.array.isRequired,
     columns: PropTypes.object.isRequired
-}
-;
+};

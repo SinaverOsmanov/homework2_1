@@ -1,5 +1,5 @@
 import React from "react";
-import { SearchTypes } from "./../types/types";
+import { SearchTypes } from "../../types/types";
 
 export function SearchStatus({ countUsers }) {
     function changeText(num) {

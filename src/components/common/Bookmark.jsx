@@ -1,5 +1,5 @@
 import React from "react";
-import { BookmarkTypes } from "./../types/types";
+import { BookmarkTypes } from "./../../types/types";
 
 export function Bookmark({ user, onPickFavorite }) {
     return (

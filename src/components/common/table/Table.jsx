@@ -5,9 +5,9 @@ import TableBody from "./TableBody";
 
 export function Table({ onSort, selectedSort, columns, data }) {
     return (
-        <table className='table'>
-            <TableHeader {...{ onSort, selectedSort, columns }}/>
-            <TableBody {...{ columns, data }}/>
+        <table className="table">
+            <TableHeader {...{ onSort, selectedSort, columns }} />
+            <TableBody {...{ columns, data }} />
         </table>
     );
 }

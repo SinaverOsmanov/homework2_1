@@ -30,15 +30,20 @@ export function TableHeader({ onSort, selectedSort, columns }) {
                             {...{ role: columns[column].path && "button" }}
                             scope="col"
                         >
-                            <Row align='bottom'>
-                                <Col>
-                                    {columns[column].name}
-                                </Col>
-                                {columns[column].path === selectedSort.path &&
+                            <Row align="bottom">
+                                <Col>{columns[column].name}</Col>
+                                {columns[column].path === selectedSort.path && (
                                     <Col>
-                                        {columns[column].path && selectedSort.order === "asc" ? <CaretUpOutlined /> : <CaretDownOutlined />}
+                                        {columns[column].path &&
+                                        selectedSort.order === "asc"
+                                            ? (
+                                                <CaretUpOutlined />
+                                            )
+                                            : (
+                                                <CaretDownOutlined />
+                                            )}
                                     </Col>
-                                }
+                                )}
                             </Row>
                         </th>
                     );
