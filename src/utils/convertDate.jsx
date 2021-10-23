@@ -1,15 +1,14 @@
 export function convertDate(number) {
     const num = Date.now() - number;
 
-    const days = Math.floor(num / 1000 / 3600 / 24);
     const date = {
         minutes: new Date(num).getUTCMinutes(),
         hours: new Date(num).getUTCHours(),
-        days: days,
+        days: Math.floor(num / 1000 / 3600 / 24),
         month: new Date(number).toLocaleString("default", { month: "long" }),
         year: new Date(number).getUTCFullYear()
     };
-    // 2009-11-10
+    
     let text;
     if (date.minutes <= 1) {
         text = "1 минуту назад";
