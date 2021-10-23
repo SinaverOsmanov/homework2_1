@@ -13,22 +13,25 @@ export function Header() {
         setCurrent({ current: pathname });
     }, [pathname]);
 
-    const handleClick = e => {
+    const handleClick = (e) => {
         setCurrent({ current: e.key });
     };
 
     return (
-        <Menu onClick={handleClick} selectedKeys={[current.current]} mode="horizontal">
-            <Menu.Item key="/" >
-                <Link to='/'>Main</Link>
+        <Menu
+            onClick={handleClick}
+            selectedKeys={[current.current]}
+            mode="horizontal"
+        >
+            <Menu.Item key="/">
+                <Link to="/">Main</Link>
             </Menu.Item>
-            <Menu.Item key="/login" >
-                <Link to='/login'>Login</Link>
+            <Menu.Item key="/login">
+                <Link to="/login">Login</Link>
             </Menu.Item>
-            <Menu.Item key='/users' >
-                <Link to='/users'>Users</Link>
+            <Menu.Item key="/users">
+                <Link to="/users">Users</Link>
             </Menu.Item>
         </Menu>
-
     );
 }

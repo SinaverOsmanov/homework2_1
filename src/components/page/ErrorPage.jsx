@@ -9,7 +9,9 @@ export function ErrorPage() {
             <Row>
                 <Col>
                     <h2>Page no found</h2>
-                    <Button type='primary' onClick={() => history.push("/")}>Вернуться на главную</Button>
+                    <Button type="primary" onClick={() => history.push("/")}>
+                        Вернуться на главную
+                    </Button>
                 </Col>
             </Row>
         </>

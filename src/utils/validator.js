@@ -6,18 +6,18 @@ export function validator(data, config) {
         case "isRequired":
             statusValidate = data.trim() === "";
             break;
-        case "isEmail":
-        { const emailRegExp = /^\S+@\S+\.\S+$/g;
+        case "isEmail": {
+            const emailRegExp = /^\S+@\S+\.\S+$/g;
             statusValidate = !emailRegExp.test(data);
             break;
         }
-        case "isCapitalSymbol":
-        { const capitalRegExp = /[A-ZА-Я]+/g;
+        case "isCapitalSymbol": {
+            const capitalRegExp = /[A-ZА-Я]+/g;
             statusValidate = !capitalRegExp.test(data);
             break;
         }
-        case "isContainDigit":
-        { const digitRegExp = /\d/g;
+        case "isContainDigit": {
+            const digitRegExp = /\d/g;
             statusValidate = !digitRegExp.test(data);
             break;
         }
@@ -32,7 +32,11 @@ export function validator(data, config) {
     }
     for (const fieldName in data) {
         for (const validateMethod in config[fieldName]) {
-            const error = validate(validateMethod, data[fieldName], config[fieldName][validateMethod]);
+            const error = validate(
+                validateMethod,
+                data[fieldName],
+                config[fieldName][validateMethod]
+            );
             if (error && !errors[fieldName]) {
                 errors[fieldName] = error;
             }
@@ -40,3 +44,30 @@ export function validator(data, config) {
     }
     return errors;
 }
+
+export const validatorConfig = {
+    email: {
+        isRequired: {
+            message: "Email должен быть заполнен"
+        },
+        isEmail: {
+            message: "Email введен некорректно"
+        }
+    },
+    password: {
+        isRequired: {
+            message: "Пароль должен быть заполнен"
+        },
+        isCapitalSymbol: {
+            message:
+                "Пароль должен содержать как минимум одну заглавную букву"
+        },
+        isContainDigit: {
+            message: "Пароль должен содержать как минимум одну цифру"
+        },
+        isMin: {
+            message: "Пароль должен содержать как минимум 8 символов",
+            value: 8
+        }
+    }
+};

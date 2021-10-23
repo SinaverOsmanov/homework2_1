@@ -1,7 +1,5 @@
 import React from "react";
 
 export function Main() {
-    return (
-        <h2>Main</h2>
-    );
+    return <h2>Main</h2>;
 }

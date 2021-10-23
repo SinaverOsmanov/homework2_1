@@ -11,7 +11,7 @@ export function Loading({ styles }) {
     };
     const antIcon = <LoadingOutlined style={styleLoading} spin />;
     return (
-        <Row justify="center" align='middle' wrap style={{ height: "100vh" }}>
+        <Row justify="center" align="middle" wrap style={{ height: "100vh" }}>
             <Col>
                 <Spin indicator={antIcon} />
             </Col>

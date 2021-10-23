@@ -1,19 +1,29 @@
 import { PropTypes } from "prop-types";
 
 export const QualitiesTypes = {
-    quality: PropTypes.shape(
-        {
-            _id: PropTypes.string,
-            name: PropTypes.string,
-            color: PropTypes.string
-        }
-    )
+    quality: PropTypes.shape({
+        _id: PropTypes.string,
+        name: PropTypes.string,
+        color: PropTypes.string
+    })
 };
 
 export const ProfessionTypes = PropTypes.shape({
     _id: PropTypes.string,
     name: PropTypes.string
 });
+
+export const UserType = {
+    user: PropTypes.shape({
+        _id: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        completedMeetings: PropTypes.number,
+        rate: PropTypes.number,
+        favorite: PropTypes.bool,
+        quality: QualitiesTypes,
+        professions: ProfessionTypes
+    })
+};
 
 export const UserTypes = {
     user: PropTypes.shape({
@@ -56,5 +66,4 @@ export const GroupListTypes = {
     onItemSelect: PropTypes.func.isRequired,
     valueProperty: PropTypes.string.isRequired,
     contentProperty: PropTypes.string.isRequired
-
 };
